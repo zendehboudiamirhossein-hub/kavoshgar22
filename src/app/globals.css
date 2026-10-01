@@ -1,0 +1,187 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-vazir);
+  --font-mono: var(--font-mono-custom);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ---------- تم روشن «آزمایشگاه روز» — سبز زمردی روی سفید نفسی ---------- */
+:root {
+  --radius: 0.8rem;
+  --background: #f2f7f4;
+  --foreground: #0d1f17;
+  --card: #ffffff;
+  --card-foreground: #0d1f17;
+  --popover: #ffffff;
+  --popover-foreground: #0d1f17;
+  --primary: #059669;
+  --primary-foreground: #ffffff;
+  --secondary: #eaf1ed;
+  --secondary-foreground: #33453d;
+  --muted: #edf3ef;
+  --muted-foreground: #5c6f66;
+  --accent: #dcf3e7;
+  --accent-foreground: #047857;
+  --destructive: #e11d48;
+  --border: #e0e8e3;
+  --input: #cfdbd4;
+  --ring: #10b98166;
+  --chart-1: #059669;
+  --chart-2: #0891b2;
+  --chart-3: #f59e0b;
+  --chart-4: #f43f5e;
+  --chart-5: #8b5cf6;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0d1f17;
+  --sidebar-primary: #059669;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf1ed;
+  --sidebar-accent-foreground: #33453d;
+  --sidebar-border: #e0e8e3;
+  --sidebar-ring: #10b98166;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Vazirmatn", Tahoma, "Segoe UI", sans-serif;
+    --font-vazir: "Vazirmatn", Tahoma, sans-serif;
+    --font-mono-custom: "JetBrains Mono", "Courier New", monospace;
+    /* هاله‌های نرم زمردی/آسمانی بالای صفحه برای حس سبک و روشن */
+    background-image:
+      radial-gradient(1100px 480px at 88% -12%, rgba(16, 185, 129, 0.1), transparent 62%),
+      radial-gradient(900px 420px at 8% -8%, rgba(14, 165, 233, 0.07), transparent 58%),
+      radial-gradient(700px 340px at 50% 115%, rgba(16, 185, 129, 0.05), transparent 60%);
+    background-attachment: fixed;
+  }
+}
+
+/* ---------- اسکرول‌بار سفارشی روشن ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3d2c9;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34d399aa;
+}
+
+/* ---------- پس‌زمینه رادار (نسخه روشن) ---------- */
+.radar-bg {
+  background-image:
+    radial-gradient(circle at 85% 0%, rgba(16, 185, 129, 0.09) 0%, transparent 55%),
+    repeating-radial-gradient(circle at 88% -10%, rgba(16, 185, 129, 0.07) 0px, rgba(16, 185, 129, 0.07) 1px, transparent 1px, transparent 52px),
+    repeating-linear-gradient(0deg, rgba(13, 31, 23, 0.016) 0px, rgba(13, 31, 23, 0.016) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(13, 31, 23, 0.016) 0px, rgba(13, 31, 23, 0.016) 1px, transparent 1px, transparent 48px);
+}
+
+.glow-border {
+  box-shadow:
+    0 0 0 1px rgba(5, 150, 105, 0.14),
+    0 8px 36px -12px rgba(5, 150, 105, 0.35);
+}
+
+/* سایه استاندارد کارت‌ها در تم روشن */
+.soft-shadow {
+  box-shadow:
+    0 1px 2px rgba(13, 31, 23, 0.04),
+    0 6px 24px -12px rgba(13, 31, 23, 0.1);
+}
+
+/* ---------- کنسول اسکن ---------- */
+.console-line {
+  font-family: "Vazirmatn", monospace;
+  animation: consoleFade 0.35s ease-out;
+}
+@keyframes consoleFade {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- پالس رادار ---------- */
+@keyframes radarPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+.radar-pulse {
+  animation: radarPulse 1.6s infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(2000%);
+  }
+}
+.scanline {
+  animation: scanline 2.4s linear infinite;
+}
+
+/* ---------- حروف انگلیسی در متن فارسی ---------- */
+.ltr-num {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
