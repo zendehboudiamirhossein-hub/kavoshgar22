@@ -1,0 +1,36 @@
+{
+  "id": "/",
+  "name": "کاوشگر | سامانه هوشمند اوسینت",
+  "short_name": "کاوشگر",
+  "description": "پلتفرم جمع‌آوری اطلاعات از منابع باز (OSINT) با تحلیل هوش مصنوعی — اینستاگرام، توییتر، تلگرام، ایمیل، دامنه و شماره تلفن",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "fa",
+  "background_color": "#f2f7f4",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity", "security"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "اسکن جدید",
+      "short_name": "اسکن",
+      "description": "شروع یک جستجوی اوسینت تازه",
+      "url": "/?tab=scan",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "پرونده‌ها",
+      "short_name": "پرونده‌ها",
+      "description": "مرور و فیلتر پرونده‌های ذخیره‌شده",
+      "url": "/?tab=cases",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

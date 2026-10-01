@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>آفلاین هستید | کاوشگر</title>
+  <link rel="icon" href="/icons/icon-192.png" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Vazirmatn, Tahoma, sans-serif;
+      background: linear-gradient(160deg, #f2f7f4 0%, #e6f2ec 100%);
+      color: #134e39;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 20px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px -20px rgba(16, 185, 129, 0.35);
+    }
+    .radar { width: 84px; height: 84px; margin: 0 auto 20px; position: relative; }
+    .radar span {
+      position: absolute; border-radius: 9999px; border: 1.5px solid rgba(16,185,129,.4);
+    }
+    .radar .r1 { inset: 0; } .radar .r2 { inset: 18px; } .radar .r3 { inset: 34px; }
+    .radar .dot {
+      inset: 0; margin: auto; width: 14px; height: 14px;
+      background: #10b981; border: none;
+    }
+    h1 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+    p { font-size: 14px; line-height: 1.9; color: #4b6b5d; margin-bottom: 22px; }
+    button {
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      background: linear-gradient(135deg, #10b981, #0d9488);
+      color: #fff; border: none; border-radius: 12px;
+      padding: 12px 28px; cursor: pointer;
+    }
+    button:hover { filter: brightness(1.06); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="radar">
+      <span class="r1"></span><span class="r2"></span><span class="r3"></span>
+      <span class="dot"></span>
+    </div>
+    <h1>اتصال اینترنت قطع است</h1>
+    <p>
+      کاوشگر در حالت آفلاین قابل نمایش است اما جستجوی اوسینت به اینترنت زنده نیاز دارد.
+      بعد از برقراری اتصال دوباره تلاش کن — پرونده‌های ذخیره‌شده امن هستند.
+    </p>
+    <button onclick="location.reload()">تلاش دوباره</button>
+  </div>
+</body>
+</html>

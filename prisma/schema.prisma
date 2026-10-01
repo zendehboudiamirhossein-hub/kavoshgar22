@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// کاربر سامانه — فقط ادمین می‌تواند کاربر ایجاد کند
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  password     String // هش bcrypt
+  role         String   @default("user") // user | admin
+  tokenVersion Int      @default(0) // با تغییر رمز/حذف افزایش می‌یابد تا سشن‌های قبلی بی‌اعتبار شوند
+  createdAt    DateTime @default(now())
+  cases        Case[]
+  searches     SearchLog[]
+}
+
+// ثبت دائمی همه جستجوها با زمان، کاربر و IP — هرگز حذف نمی‌شود
+model SearchLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull) // با حذف کاربر، لاگ باقی می‌ماند
+  username   String // اسنپ‌شات نام کاربری (حتی اگر کاربر حذف شود می‌ماند)
+  target     String // مقدار هدف جستجو
+  targetType String? // نوع هدف
+  modules    String? // JSON فهرست ماژول‌های اجراشده
+  status     String   @default("completed") // completed | failed
+  ip         String? // آی‌پی کاربر
+  userAgent  String? // مرورگر کاربر
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([username])
+  @@index([createdAt])
+}
+
+// پرونده اوسینت - هر اسکن یک پرونده است
+model Case {
+  id         String   @id @default(cuid())
+  userId     String? // مالک پرونده — هر کاربر فقط پرونده‌های خودش را می‌بیند
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull) // با حذف کاربر، پرونده آرشیوی می‌ماند (فقط ادمین می‌بیند)
+  target     String // مقدار هدف: یوزرنیم، ایمیل، شماره، دامنه...
+  targetType String // نوع هدف: username | email | phone | domain | ip | url
+  status     String   @default("completed") // completed | failed
+  riskScore  Int? // امتیاز ریسک 0-100 از تحلیل AI
+  summary    String? // خلاصه فارسی گزارش AI
+  results    String? // JSON همه نتایج ماژول‌ها
+  aiReport   String? // JSON گزارش کامل تحلیل هوش مصنوعی
+  tags       String? // JSON آرایه برچسب‌های کاربر مثل ["مظنون","تهران"]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([target])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+// تنظیمات سراسری سامانه — مثل کلید API سازمانی که مدیر برای همه کاربران تنظیم می‌کند
+model Setting {
+  key       String   @id // مثل hiker_api_key
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+// پیام‌های چت با تحلیلگر هوش مصنوعی
+model ChatMessage {
+  id        String   @id @default(cuid())
+  caseId    String? // اگر به پرونده‌ای متصل باشد
+  role      String // user | assistant
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([caseId])
+}
