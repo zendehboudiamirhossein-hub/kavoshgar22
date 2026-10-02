@@ -209,7 +209,6 @@ export async function aiChat(
   messages: { role: 'user' | 'assistant'; content: string }[],
   caseContext?: string
 ): Promise<string> {
-  const zai = await ZAI.create();
   const system = `تو «کاوشگر» هستی؛ تحلیلگر ارشد اوسینت و دستیار هوشمند تحلیل اطلاعاتی. به سوالات کاربر به زبان فارسی، دقیق و حرفه‌ای پاسخ بده.
 
 ${
